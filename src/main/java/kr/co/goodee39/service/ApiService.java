@@ -56,21 +56,21 @@ public class ApiService {
 				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
 			}
 
-			// rd 내용 읽으면 <item>블럭 마다 sb변수에 단락 띄우고 저장
+			// rd 내용 읽으면 <item>블럭마다 단락 띄우고 저장
 			String line;
 			while ((line = rd.readLine()) != null) {
 				sb.append(line + "\n");
 			}
-
+			
 			//rd 처리 끝 > 닫기
 			rd.close();
 			//url연결 후 정보 다 가져옴 > 닫기
 			conn.disconnect();
 
-			// xml 파일화
+			// String화
 			xmlFile = sb.toString();
 			
-			//controller로 xmlFile화 된 sb전달하기
+			//controller로 String화 된 sb전달하기
 			return xmlFile;
 			
 
