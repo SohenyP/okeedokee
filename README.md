@@ -1,24 +1,25 @@
 # 🐶OKEEDOKEE | 오키도키
 OPEN API를 활용한 유기견 입양 / 보호소 / 봉사•후원 정보 제공 프로젝트
 
-### INDEX
-- [Introduction](#Introduction)
-- [Goal](#Goal)
-- [User](#User)
-- [Period](#Period)
-- [Tech Stack](#Tech-Stack)
-- [Develop Detail](#Develop-Detail)
-- [My Position](#My-Position)
-- [Demonstration Video](#Demonstration-Video)
-- [Attached](#Attached)
+## 🗂️INDEX
+- [Introduction](#introduction)
+- [Goal](#goal)
+- [User](#user)
+- [Period](#period)
+- [Tech Stack](#tech-stack)
+- [Develop Detail](#develop-detail)
+- [My Position](#my-position)
+- [Demonstration](#demonstration)
+- [Attached](#attached)
 </br>
+
 
 ## 📢Introduction
 > ### 농림축산본부 추산, 한 해 버려지는 유기동물, 약 13만.([첨부1](#첨부1))       
 >(공식 보호소 한정. 사설 보호소 미포함)       
 > #### 2021 오픈서베이 반려동물 트렌드 리포트
 > - 반려동물을 키우지 않는 응답자 10명 중 3명이 향후 양육 의향이 있음([첨부2](#첨부2))         
-> - '사지말고 입양해야 한다’는 응답이 69.4%로 높은 수치를 보여줌 ([첨부3](#첨부3))   
+> - '사지말고 입양해야 한다’는 응답이 69.4%로 높은 수치를 보여줌 ([첨부3](#첨부3))  
 #
 ## 🎯Goal
 > - #### 입양 정보에 대한 접근성 향상을 통해 반려동물 양육 계획있는 표본 유인       
@@ -214,6 +215,8 @@ OPEN API를 활용한 유기견 입양 / 보호소 / 봉사•후원 정보 제�
 >     1. 로그인 세션 getSession()으로 id 추출해 report테이블 selectList
 >     2. 관리자 레벨 댓글 작성시 status = 'Y' UPDATE로 답변완료 처리
 >     
+#
+## 📸Demonstration
 #
 ## 📑Attached
 #### 첨부1        
