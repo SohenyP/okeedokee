@@ -1,10 +1,10 @@
-var init_Announcement = function () {
+var init_Announcement = function() {
 
 	var jsonDogResult = dogData;
 
 	var _today = new Date()
-	  , _todayResult = '';
-	  
+		, _todayResult = '';
+
 	//일자일 경우 예외처리..
 	_today.setMonth(_today.getMonth() + 1); //1 --> 2
 	var _dateResult = getDateZeroPadding(_today.getMonth(), _today.getDate());
@@ -20,14 +20,14 @@ var init_Announcement = function () {
 	$('#search').focus();
 
 	//search검색
-	$("#btn-search").on("click", function () {
+	$("#btn-search").on("click", function() {
 		bindDogData('', jsonDogResult);
 	});
 
-	$("#search").on('keyup', function (e) {
+	$("#search").on('keyup', function(e) {
 		if (e.key === 'Enter' || e.keyCode === 13) {
 			bindDogData('', jsonDogResult);
-		} else {;}
+		} else { ; }
 	});
 }
 
@@ -38,20 +38,28 @@ var init_Announcement = function () {
  * @param {*} i_date 일
  * @returns json..! [중요]
  */
-var getDateZeroPadding = function (i_month, i_date) {
+var getDateZeroPadding = function(i_month, i_date) {
 	var jsonResult = {}
-	  , dateResult = ''
-	  , monthResult = '';
+		, dateResult = ''
+		, monthResult = '';
 
 	//달
-	console.log(i_month);
 	if (i_month < 10) {
 		monthResult = '0' + i_month;
 	} else {
 		monthResult = i_month;
 	}
-	
+
 	//일
+	let day = new Date();
+	let hour = day.getHours();
+	console.log(hour);
+	
+	if (hour < 10) {
+		i_date -= 1;
+		alert("오늘의 공고가 없습니다.")
+	}
+	
 	if (i_date < 10) {
 		//1~9
 		dateResult = '0' + i_date;
@@ -59,21 +67,23 @@ var getDateZeroPadding = function (i_month, i_date) {
 		//10~31일자
 		dateResult = i_date;
 	}
-	
+
+
+
 	jsonResult.monthResult = monthResult
 	jsonResult.dateResult = dateResult;
-	
+
 	return jsonResult;
 }
 
-var page_move = function (url, i_data) {
+var page_move = function(url, i_data) {
 	var form = document.createElement("form");
 	var input = new Array();
 
 
 	form.action = url;
 	form.method = "post";
-	
+
 	for (var i = 0; i < i_data.length; i++) {
 		var jsonKey = Object.keys(i_data[i]);
 		var jsonKeyResult = jsonKey[0];
@@ -104,7 +114,7 @@ var page_move = function (url, i_data) {
 			strJsonValue = i_data[i].dog_chargeNm;
 		} else if ('dog_careAddr' == jsonKeyResult) {
 			strJsonValue = i_data[i].dog_careAddr;
-		} else {;}
+		} else { ; }
 
 		input[i] = document.createElement("input");
 		input[i].setAttribute("type", "hidden");
@@ -117,28 +127,28 @@ var page_move = function (url, i_data) {
 	form.submit();
 }
 
-var bindDogData = function (i_init, i_data) {
+var bindDogData = function(i_init, i_data) {
 	var doaData = i_data;
-	
+
 	//초기화
 	$('#div_dogContentMain').empty();
 
 	if ('init' == i_init) {
 		//최초 페이지
 		//console.log(dogDataResult[i].kindCd);
-		
+
 		var strStartDate = $('#start_date').val()
-		  , strEndDate = $('#end_date').val()
-		  , strSplitStartDate = strStartDate.split('-')
-		  , strSplitEndDate = strEndDate.split('-')
-          , strSplitStartDateResult = strSplitStartDate[0] + strSplitStartDate[1] + strSplitStartDate[2]
-          , strSplitEndDateResult = strSplitEndDate[0] + strSplitEndDate[1] + strSplitEndDate[2];
+			, strEndDate = $('#end_date').val()
+			, strSplitStartDate = strStartDate.split('-')
+			, strSplitEndDate = strEndDate.split('-')
+			, strSplitStartDateResult = strSplitStartDate[0] + strSplitStartDate[1] + strSplitStartDate[2]
+			, strSplitEndDateResult = strSplitEndDate[0] + strSplitEndDate[1] + strSplitEndDate[2];
 
 		var count = 0;
 		for (var i = 0; i < doaData.length; i++) {
 			if (Number(strSplitStartDateResult) <= Number(doaData[i].noticeSdt) && Number(strSplitEndDateResult) >= Number(doaData[i].noticeSdt)) {
 				count++;
-			} else {;}
+			} else { ; }
 		}
 
 		if (0 == count) {
@@ -149,10 +159,10 @@ var bindDogData = function (i_init, i_data) {
 					var dogDataHTML = "";
 					dogDataHTML += '<div class="profile-div" id="profile_' + doaData[i].desertionNo + '">';
 					dogDataHTML += '<div class="profile-contents">';
-					dogDataHTML +=	'<div class="profile-photo">';
-					dogDataHTML +=	'<img id="dog_img_' + doaData[i].desertionNo + '" alt="">';
-					dogDataHTML +=	'</div>';
-					dogDataHTML +=	'</div>';
+					dogDataHTML += '<div class="profile-photo">';
+					dogDataHTML += '<img id="dog_img_' + doaData[i].desertionNo + '" alt="">';
+					dogDataHTML += '</div>';
+					dogDataHTML += '</div>';
 					dogDataHTML += '<div class="profile-info">';
 					dogDataHTML += '<ul>';
 					dogDataHTML += '<li id="dog_kindCd_' + doaData[i].desertionNo + '">품종 : ' + doaData[i].kindCd + '</li>';
@@ -172,23 +182,23 @@ var bindDogData = function (i_init, i_data) {
 					dogDataHTML += '</div>';
 					dogDataHTML += '</div>';
 
-                	$('#div_dogContentMain').append(dogDataHTML);
+					$('#div_dogContentMain').append(dogDataHTML);
 
 					$('#dog_img_' + doaData[i].desertionNo).attr("src", doaData[i].popfile);
 
-				} else {;}
+				} else { ; }
 			}
 		}
 	} else {
 		//검색 눌렀을때
 		var strStartDate = $('#start_date').val()
-		  , strEndDate = $('#end_date').val()
-		  , strSplitStartDate = strStartDate.split('-')
-		  , strSplitEndDate = strEndDate.split('-')
-          , strSplitStartDateResult = strSplitStartDate[0] + strSplitStartDate[1] + strSplitStartDate[2]
-          , strSplitEndDateResult = strSplitEndDate[0] + strSplitEndDate[1] + strSplitEndDate[2]
-		  , strSearchCategory = $('#search_category').val()
-		  , strSearchField = $('#search').val();
+			, strEndDate = $('#end_date').val()
+			, strSplitStartDate = strStartDate.split('-')
+			, strSplitEndDate = strEndDate.split('-')
+			, strSplitStartDateResult = strSplitStartDate[0] + strSplitStartDate[1] + strSplitStartDate[2]
+			, strSplitEndDateResult = strSplitEndDate[0] + strSplitEndDate[1] + strSplitEndDate[2]
+			, strSearchCategory = $('#search_category').val()
+			, strSearchField = $('#search').val();
 
 		/*console.log('시작일 : '      + strStartDate);
 		console.log('종료일 : '      + strEndDate);
@@ -205,9 +215,9 @@ var bindDogData = function (i_init, i_data) {
 					var dogDataHTML = "";
 					dogDataHTML += '<div class="profile-div" id="profile_' + doaData[i].desertionNo + '">';
 					dogDataHTML += '<div class="profile-contents">';
-					dogDataHTML +=	'<div class="profile-photo">';
-					dogDataHTML +=	'<img id="dog_img_' + doaData[i].desertionNo + '" alt="">';
-					dogDataHTML +=	'</div>';
+					dogDataHTML += '<div class="profile-photo">';
+					dogDataHTML += '<img id="dog_img_' + doaData[i].desertionNo + '" alt="">';
+					dogDataHTML += '</div>';
 					dogDataHTML += '<div class="profile-info">';
 					dogDataHTML += '<ul>';
 					dogDataHTML += '<li id="dog_kindCd_' + doaData[i].desertionNo + '">품종 : ' + doaData[i].kindCd + '</li>';
@@ -234,20 +244,20 @@ var bindDogData = function (i_init, i_data) {
 						//품종 kindCd
 						if (doaData[i].kindCd.includes(strSearchField)) {
 							arrDogDataResult.push(doaData[i]);
-						} else {;}
+						} else { ; }
 					} else if ('happenPlace' == strSearchCategory) {
 						//구조지역
 						if (doaData[i].happenPlace.includes(strSearchField)) {
 							arrDogDataResult.push(doaData[i]);
-						} else {;}
+						} else { ; }
 					} else if ('careNm' == strSearchCategory) {
 						//보호소
 						if (doaData[i].careNm.includes(strSearchField)) {
 							arrDogDataResult.push(doaData[i]);
-						} else {;}
-					} else {;}
+						} else { ; }
+					} else { ; }
 				}
-			} else {;}
+			} else { ; }
 		}
 
 		if (0 == arrDogDataResult.length && '' != strSearchField) {
@@ -257,9 +267,9 @@ var bindDogData = function (i_init, i_data) {
 				dogDataHTML = "";
 				dogDataHTML += '<div class="profile-div" id="profile_' + arrDogDataResult[i].desertionNo + '">';
 				dogDataHTML += '<div class="profile-contents">';
-				dogDataHTML +=	'<div class="profile-photo">';
-				dogDataHTML +=	'<img id="dog_img_' + arrDogDataResult[i].desertionNo + '" alt="">';
-				dogDataHTML +=	'</div>';
+				dogDataHTML += '<div class="profile-photo">';
+				dogDataHTML += '<img id="dog_img_' + arrDogDataResult[i].desertionNo + '" alt="">';
+				dogDataHTML += '</div>';
 				dogDataHTML += '<div class="profile-info">';
 				dogDataHTML += '<ul>';
 				dogDataHTML += '<li id="dog_kindCd_' + arrDogDataResult[i].desertionNo + '">품종 : ' + arrDogDataResult[i].kindCd + '</li>';
@@ -287,25 +297,25 @@ var bindDogData = function (i_init, i_data) {
 		}
 	}
 
-	$(".profile-div").on("click", function () {
+	$(".profile-div").on("click", function() {
 		var dogId = $(this).attr('id');
 		var splitDogId = dogId.split('_');
 		var arrDogParams = new Array();
 
 		var _dog_img = {}
-		  , _dog_kindCd = {}
-		  , _dog_orgNm = {}
-		  , _dog_age = {}
-		  , _dog_sexCd = {}
-		  , _dog_noticeSdt = {}
-		  , _dog_careNm = {}
-		  , _dog_happenPlace = {}
-		  , _dog_processState = {}
-		  , _dog_specialMark = {}
-		  , _dog_careTel = {}
-		  , _dog_chargeNm = {}
-		  , _dog_careAddr = {};
-		
+			, _dog_kindCd = {}
+			, _dog_orgNm = {}
+			, _dog_age = {}
+			, _dog_sexCd = {}
+			, _dog_noticeSdt = {}
+			, _dog_careNm = {}
+			, _dog_happenPlace = {}
+			, _dog_processState = {}
+			, _dog_specialMark = {}
+			, _dog_careTel = {}
+			, _dog_chargeNm = {}
+			, _dog_careAddr = {};
+
 		_dog_img.dog_img = $('#dog_img_' + splitDogId[1]).attr('src');
 		_dog_kindCd.dog_kindCd = $('#dog_kindCd_' + splitDogId[1]).text();
 		_dog_orgNm.dog_orgNm = $('#dog_orgNm_' + splitDogId[1]).text();
@@ -335,18 +345,18 @@ var bindDogData = function (i_init, i_data) {
 		arrDogParams.push(_dog_careAddr);
 
 		page_move('/okeedokee/Announcement/Announcement_detail', arrDogParams);
-	
+
 	});
-	
+
 }
 
 
 
 //Render
 $(document).ready(function() {
-	
-    //초기 init render
-    init_Announcement();
 
-	
+	//초기 init render
+	init_Announcement();
+
+
 });
