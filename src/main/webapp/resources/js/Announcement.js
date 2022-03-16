@@ -44,19 +44,20 @@ var getDateZeroPadding = function (i_month, i_date) {
 	  , monthResult = '';
 
 	//달
-	if (1 < i_month.length) {
-		monthResult = i_month;
-	} else {
+	console.log(i_month);
+	if (i_month < 10) {
 		monthResult = '0' + i_month;
-	}
-
-	//일
-	if (1 < i_date.length) {
-		//10~31일자
-		dateResult = i_date;
 	} else {
+		monthResult = i_month;
+	}
+	
+	//일
+	if (i_date < 10) {
 		//1~9
 		dateResult = '0' + i_date;
+	} else {
+		//10~31일자
+		dateResult = i_date;
 	}
 	
 	jsonResult.monthResult = monthResult
