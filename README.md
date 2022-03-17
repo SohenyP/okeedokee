@@ -7,7 +7,7 @@ OPEN API를 활용한 유기견 입양 / 보호소 / 봉사•후원 정보 제�
 - [User](#user)
 - [Period](#period)
 - [Tech Stack](#tech-stack)
-- [Develop Detail](#develop-detail)
+- [Detail of Development](#detail-of-development)
 - [My Position](#my-position)
 - [Demonstration](#demonstration)
 - [Attached](#attached)
@@ -55,7 +55,7 @@ OPEN API를 활용한 유기견 입양 / 보호소 / 봉사•후원 정보 제�
 >   - <b>Naver Smart Editor 2.0 - WYSIWYG Text Editor</b>
 >   - <b>i'mport - Payment System</b>
 #
-## 📝Develop Detail
+## 📝Detail of Development
 > - [Project Kanban Board](https://trello.com/b/cot384sf/%EA%B5%AC%EB%94%9439-%EC%83%98%ED%94%8C)</br>
 >   <img src="https://user-images.githubusercontent.com/88533162/158531003-83cd28f6-85ac-488e-850b-28cf7439fb4a.png" style="width: 300px; height: 150px;">
 > - [요구사항정의서](https://docs.google.com/spreadsheets/d/1NDEw2g-ZNCsZRSz5HKTX8BzRfY2dpyYh53sfyahZxcs/edit#gid=0)</br>
