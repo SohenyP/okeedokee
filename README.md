@@ -1,5 +1,5 @@
 # 🐶OKEEDOKEE | 오키도키
-OPEN API를 활용한 유기견 입양 / 보호소 / 봉사•후원 정보 제공 프로젝트
+OPEN API를 활용한 유기견 입양 / 보호소 / 봉사•후원 정보 제공 팀 프로젝트
 
 ## 🗂️INDEX
 - [Introduction](#introduction)
